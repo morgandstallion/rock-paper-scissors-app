@@ -273,6 +273,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 0;
+  margin-block: var(--sp-lg);
 }
 
 .welcome__title-line {
@@ -282,7 +283,7 @@ span {
 
 .welcome__title-line--accent {
   /* Gradient text for "Paper" */
-  background: linear-gradient(90deg, var(--clr-paper), var(--clr-scissors));
+  background: linear-gradient(60deg, var(--clr-paper), var(--clr-scissors));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
