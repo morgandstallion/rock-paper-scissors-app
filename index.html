@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- =============================================
+       SCREEN 1: WELCOME SCREEN
+       Toggle: add .screen--active to show
+  ============================================= -->
+    <section class="screen screen--welcome screen--active" id="screen-welcome" aria-label="Welcome screen">
+
+        <!-- Floating background  (decorative) -->
+        <div class="bg-orbs" aria-hidden="true">
+            <div class="bg-orb bg-orb--1"></div>
+            <div class="bg-orb bg-orb--2"></div>
+            <div class="bg-orb bg-orb--3"></div>
+        </div>
+
+        <!-- Floating weapon icons (decorative) -->
+        <div class="floating-icons" aria-hidden="true">
+            <span class="float-icon float-icon--1">🪨</span>
+            <span class="float-icon float-icon--2">📄</span>
+            <span class="float-icon float-icon--3">✂️</span>
+            <span class="float-icon float-icon--4">🪨</span>
+            <span class="float-icon float-icon--5">✂️</span>
+        </div>
+
+        <main class="welcome__inner">
+            <header class="welcome__header">
+                <p class="welcome__eyebrow">EST. 0 — ∞</p>
+                <h1 class="welcome__title">
+                    <span class="welcome__title-line">Rock</span>
+                    <span class="welcome__title-line welcome__title-line--accent">Paper</span>
+                    <span class="welcome__title-line">Scissors</span>
+                </h1>
+                <p class="welcome__subtitle">Choose your weapon. Outsmart the machine.</p>
+            </header>
+
+            <div class="welcome__cta">
+                <button class="btn btn--primary btn--pulse" id="btn-start" aria-label="Start the game">
+                    <span class="btn__label">Start Game</span>
+                    <span class="btn__arrow" aria-hidden="true">→</span>
+                </button>
+
+                <p class="welcome__hint">Best of 5 rounds</p>
+            </div>
+
+            <!-- Decorative weapon trio -->
+            <div class="welcome__weapons" aria-hidden="true">
+                <div class="weapon-card weapon-card--rock">
+                    <span class="weapon-card__icon">🪨</span>
+                    <span class="weapon-card__name">Rock</span>
+                </div>
+                <div class="weapon-card weapon-card--paper">
+                    <span class="weapon-card__icon">📄</span>
+                    <span class="weapon-card__name">Paper</span>
+                </div>
+                <div class="weapon-card weapon-card--scissors">
+                    <span class="weapon-card__icon">✂️</span>
+                    <span class="weapon-card__name">Scissors</span>
+                </div>
+            </div>
+        </main>
+    </section>
+
+
+    <!-- =============================================
+       SCREEN 2: GAME SCREEN
+       Toggle: add .screen--active to show
+  ============================================= -->
+    <section class="screen screen--game hidden" id="screen-game" aria-label="Game screen">
+
+        <!-- Subtle background texture -->
+        <div class="bg-orbs" aria-hidden="true">
+            <div class="bg-orb bg-orb--1"></div>
+            <div class="bg-orb bg-orb--3"></div>
+        </div>
+
+        <main class="game__inner">
+
+            <!-- ── Header ── -->
+            <header class="game__header">
+                <h2 class="game__title">RPS</h2>
+
+                <!-- Scoreboard -->
+                <div class="scoreboard" aria-label="Current score">
+                    <div class="scoreboard__side scoreboard__side--player">
+                        <span class="scoreboard__label">Player</span>
+                        <span class="scoreboard__value" id="score-player">0</span>
+                    </div>
+
+                    <div class="scoreboard__divider" aria-hidden="true">:</div>
+
+                    <div class="scoreboard__side scoreboard__side--cpu">
+                        <span class="scoreboard__label">CPU</span>
+                        <span class="scoreboard__value" id="score-cpu">0</span>
+                    </div>
+                </div>
+
+                <button class="btn btn--ghost btn--sm" id="btn-menu" aria-label="Return to main menu">
+                    Menu
+                </button>
+            </header>
+
+            <!-- ── Battle Arena ── -->
+            <div class="arena" aria-label="Battle arena">
+
+                <!-- Player panel -->
+                <div class="arena__panel arena__panel--player" aria-label="Your choice">
+                    <p class="arena__label">You</p>
+                    <div class="arena__choice" id="player-choice" aria-live="polite" aria-label="Your chosen weapon">
+                        <span class="arena__choice-placeholder" aria-hidden="true">?</span>
+                    </div>
+                </div>
+
+                <!-- VS badge -->
+                <div class="arena__vs" aria-hidden="true">
+                    <span class="arena__vs-text">VS</span>
+                </div>
+
+                <!-- CPU panel -->
+                <div class="arena__panel arena__panel--cpu" aria-label="CPU choice">
+                    <p class="arena__label">CPU</p>
+                    <div class="arena__choice" id="cpu-choice" aria-live="polite" aria-label="CPU chosen weapon">
+                        <span class="arena__choice-placeholder" aria-hidden="true">?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Round Status ── -->
+            <p class="game__status" id="game-status" aria-live="polite" aria-atomic="true">
+                Make your move
+            </p>
+
+            <!-- ── Choice Controls ── -->
+            <div class="choices" role="group" aria-label="Choose your weapon">
+                <button class="choice-btn choice-btn--rock" id="btn-rock" aria-label="Choose Rock" data-choice="rock">
+                    <span class="choice-btn__icon" aria-hidden="true">🪨</span>
+                    <span class="choice-btn__label">Rock</span>
+                </button>
+
+                <button class="choice-btn choice-btn--paper" id="btn-paper" aria-label="Choose Paper"
+                    data-choice="paper">
+                    <span class="choice-btn__icon" aria-hidden="true">📄</span>
+                    <span class="choice-btn__label">Paper</span>
+                </button>
+
+                <button class="choice-btn choice-btn--scissors" id="btn-scissors" aria-label="Choose Scissors"
+                    data-choice="scissors">
+                    <span class="choice-btn__icon" aria-hidden="true">✂️</span>
+                    <span class="choice-btn__label">Scissors</span>
+                </button>
+            </div>
+
+        </main>
+    </section>
+
+
+    <!-- =============================================
+       SCREEN 3: END OF GAME SCREEN
+       Toggle: add .screen--active to show
+       JS should also add one of:
+         .end--win | .end--lose | .end--draw
+       to #screen-end for conditional styling
+  ============================================= -->
+    <section class="screen screen--end hidden" id="screen-end" aria-label="End of game screen">
+
+        <div class="bg-orbs" aria-hidden="true">
+            <div class="bg-orb bg-orb--1"></div>
+            <div class="bg-orb bg-orb--2"></div>
+            <div class="bg-orb bg-orb--3"></div>
+        </div>
+
+        <!-- Confetti particles (JS can populate these, CSS animates them) -->
+        <div class="confetti" id="confetti" aria-hidden="true">
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+            <span class="confetti__piece"></span>
+        </div>
+
+        <main class="end__inner">
+
+            <!-- Result badge icon -->
+            <div class="end__badge" id="end-badge" aria-hidden="true">
+                <!-- JS: swap content based on result -->
+                <!-- Win → 🏆 | Lose → 💀 | Draw → 🤝 -->
+                <span class="end__badge-icon">🏆</span>
+            </div>
+
+            <!-- Result headline -->
+            <header class="end__header">
+                <h2 class="end__result" id="end-result">
+                    <!-- JS: "You Win!" / "You Lose!" / "Draw Game!" -->
+                    You Win!
+                </h2>
+                <p class="end__tagline" id="end-tagline">
+                    The machine crumbles before you.
+                </p>
+            </header>
+
+            <!-- Final Score -->
+            <div class="end__score" aria-label="Final score">
+                <div class="end__score-side">
+                    <span class="end__score-label">Player</span>
+                    <span class="end__score-value" id="end-score-player">5</span>
+                </div>
+                <span class="end__score-dash" aria-hidden="true">—</span>
+                <div class="end__score-side">
+                    <span class="end__score-label">CPU</span>
+                    <span class="end__score-value" id="end-score-cpu">3</span>
+                </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="end__actions">
+                <button class="btn btn--primary" id="btn-play-again" aria-label="Play again">
+                    <span class="btn__label">Play Again</span>
+                    <span class="btn__arrow" aria-hidden="true">↺</span>
+                </button>
+                <button class="btn btn--ghost" id="btn-main-menu" aria-label="Return to main menu">
+                    Main Menu
+                </button>
+            </div>
+
+        </main>
+    </section>
+
+</body>
+
+</html>
