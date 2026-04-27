@@ -1159,7 +1159,7 @@ span {
 /* Stack arena vertically on very small screens */
 @media (max-width: 480px) {
   .arena {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto 1fr;
     grid-template-rows: auto auto auto;
     gap: var(--sp-sm);
   }

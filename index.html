@@ -79,7 +79,7 @@
        SCREEN 2: GAME SCREEN
        Toggle: add .screen--active to show
   ============================================= -->
-    <section class="screen screen--game screen--active" id="screen-game" aria-label="Game screen">
+    <section class="screen screen--game hidden" id="screen-game" aria-label="Game screen">
 
         <!-- Subtle background texture -->
         <div class="bg-orbs" aria-hidden="true">
@@ -109,7 +109,7 @@
                 </div>
 
                 <button class="btn btn--ghost btn--sm" id="btn-menu" aria-label="Return to main menu">
-                    Menu
+
                 </button>
             </header>
 
@@ -120,7 +120,7 @@
                 <div class="arena__panel arena__panel--player" aria-label="Your choice">
                     <p class="arena__label">You</p>
                     <div class="arena__choice" id="player-choice" aria-live="polite" aria-label="Your chosen weapon">
-                        <span class="arena__choice-placeholder" aria-hidden="true">?</span>
+                        <span id="player-choice-holder" class="arena__choice-placeholder" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -133,7 +133,7 @@
                 <div class="arena__panel arena__panel--cpu" aria-label="CPU choice">
                     <p class="arena__label">CPU</p>
                     <div class="arena__choice" id="cpu-choice" aria-live="polite" aria-label="CPU chosen weapon">
-                        <span class="arena__choice-placeholder" aria-hidden="true">?</span>
+                        <span id="computer-choice-holder" class="arena__choice-placeholder" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>
@@ -244,7 +244,7 @@
 
         </main>
     </section>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
